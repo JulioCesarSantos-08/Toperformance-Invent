@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ingreso al Sistema - ToPerformance Taller</title>
+  <link rel="icon" href="imagenes/logo1.png">
 
   <style>
     body {
@@ -94,6 +95,29 @@
     .link:hover {
       color: #001fa3;
     }
+
+    /* Botones externos */
+    .external-links {
+      margin-top: 25px;
+    }
+
+    .external-links a {
+      display: block;
+      background: #ffffff;
+      color: #8B0000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 8px 0;
+      border: 2px solid #8B0000;
+      transition: all 0.3s ease;
+    }
+
+    .external-links a:hover {
+      background: #8B0000;
+      color: #fff;
+    }
   </style>
 </head>
 
@@ -105,6 +129,11 @@
     <input type="password" id="password" placeholder="Contraseña">
     <button id="loginBtn">Ingresar</button>
     <span class="link" onclick="resetPassword()">¿Olvidaste tu contraseña?</span>
+
+    <div class="external-links">
+      <a href="https://toperformance-qr.vercel.app/index.html" target="_blank">📱 Página QR's</a>
+      <a href="https://toperformance.vercel.app/index.html" target="_blank">🌐 Página General</a>
+    </div>
   </div>
 
   <script type="module">
@@ -133,6 +162,7 @@
 
     const loginBtn = document.getElementById("loginBtn");
 
+    // 🔐 Iniciar sesión
     loginBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
@@ -150,8 +180,8 @@
         localStorage.setItem("userEmail", user.email);
         localStorage.setItem("userUid", user.uid);
 
-        // ✅ Redirigir directo al inventario
-        window.location.href = "inventario.html";
+        // ✅ Redirige a inicio.html tras login exitoso
+        window.location.href = "inicio.html";
       } catch (error) {
         if (error.code === "auth/invalid-credential") {
           alert("Correo o contraseña incorrectos.");
@@ -163,7 +193,7 @@
       }
     });
 
-    // 🔁 Recuperar contraseña
+    // ✉️ Recuperar contraseña
     window.resetPassword = async function() {
       const email = document.getElementById("email").value.trim();
       if (!email) {

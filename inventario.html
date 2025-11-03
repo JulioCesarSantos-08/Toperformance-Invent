@@ -5,12 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inventario - Taller ToPerformance</title>
   <link rel="stylesheet" href="inventario.css">
+  <style>
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #8B0000;
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      height: 60px;
+      border-radius: 8px;
+    }
+
+    header h1 {
+      flex: 1;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    header .botones-header {
+      display: flex;
+      gap: 10px;
+    }
+
+    header button {
+      background: #fff;
+      color: #8B0000;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    header button:hover {
+      background: #ffcccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #ddd;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <img src="imagenes/logo1.png" alt="Logo Taller" class="logo">
     <h1>Inventario de Taller ToPerformance</h1>
-    <button id="logoutBtn">Cerrar Sesión</button>
+
+    <div class="botones-header">
+      <button id="inicioBtn">Volver a Inicio</button>
+      <button id="logoutBtn">Cerrar Sesión</button>
+    </div>
   </header>
 
   <main>
@@ -47,6 +101,7 @@
         </thead>
         <tbody id="tablaBody"></tbody>
       </table>
+
       <div class="botonesDescarga">
         <button id="descargarExcel">Descargar Excel</button>
         <button id="descargarPDF">Descargar PDF</button>
@@ -62,6 +117,39 @@
   <footer>
     <p>© 2025 Taller ToPerformance | Sistema Interno de Gestión</p>
   </footer>
+
+  <script type="module">
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBA_i9O3vXzFn2rIKY4XQzll2fLvmD-u3A",
+      authDomain: "toperformance-50d5a.firebaseapp.com",
+      projectId: "toperformance-50d5a",
+      storageBucket: "toperformance-50d5a.appspot.com",
+      messagingSenderId: "1020165964748",
+      appId: "1:1020165964748:web:f05155f982eb4f2eaf9369"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // 🔹 Botón "Volver a Inicio"
+    document.getElementById("inicioBtn").addEventListener("click", () => {
+      window.location.href = "inicio.html";
+    });
+
+    // 🔹 Botón "Cerrar Sesión"
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        localStorage.clear();
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("Error al cerrar sesión: " + error.message);
+      }
+    });
+  </script>
 
   <script type="module" src="inventario.js"></script>
 </body>

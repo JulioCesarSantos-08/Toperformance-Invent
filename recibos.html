@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generar Recibos - Taller ToPerformance</title>
+  <link rel="stylesheet" href="recibos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <img src="imagenes/logo1.png" alt="Logo Taller" class="logo">
+    <h1>Generación de Recibos</h1>
+    <div class="botones-header">
+      <button id="volverInicio">🏠 Volver al Inicio</button>
+      <button id="logoutBtn">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Datos del Cliente</h2>
+      <input type="text" id="cliente" placeholder="Nombre del cliente" required>
+      <input type="text" id="servicio" placeholder="Servicio realizado" required>
+      <input type="number" id="costo" placeholder="Costo total (MXN)" required>
+      <select id="metodoPago">
+        <option value="" disabled selected>Selecciona método de pago</option>
+        <option value="Efectivo">Efectivo</option>
+        <option value="Transferencia">Transferencia</option>
+      </select>
+      <button id="generarRecibo">Generar Recibo</button>
+    </section>
+
+    <section id="reciboContainer" class="recibo-container oculto">
+      <div id="recibo">
+        <div class="recibo-header">
+          <img src="imagenes/logo1.png" alt="Logo Taller" class="logo-mini">
+          <h2>Taller ToPerformance</h2>
+          <p>Recibo oficial de pago</p>
+        </div>
+        <div class="recibo-datos">
+          <p><strong>Cliente:</strong> <span id="rCliente"></span></p>
+          <p><strong>Servicio:</strong> <span id="rServicio"></span></p>
+          <p><strong>Método de pago:</strong> <span id="rMetodo"></span></p>
+          <p><strong>Total:</strong> $<span id="rCosto"></span> MXN</p>
+          <p><strong>Fecha:</strong> <span id="rFecha"></span></p>
+        </div>
+        <div class="recibo-footer">
+          <p>Gracias por confiar en ToPerformance 🧰</p>
+        </div>
+      </div>
+
+      <div class="botones-recibo">
+        <button id="descargarPDF">📄 Descargar PDF</button>
+        <button id="nuevoRecibo">🧾 Nuevo Recibo</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Taller ToPerformance | Sistema Interno</p>
+  </footer>
+
+  <script type="module" src="recibos.js"></script>
+</body>
+</html>
