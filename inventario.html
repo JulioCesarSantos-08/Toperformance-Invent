@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario - Taller ToPerformance</title>
+  <link rel="stylesheet" href="inventario.css">
+</head>
+<body>
+  <header>
+    <img src="imagenes/logo1.png" alt="Logo Taller" class="logo">
+    <h1>Inventario de Taller ToPerformance</h1>
+    <button id="logoutBtn">Cerrar Sesión</button>
+  </header>
+
+  <main>
+    <section class="acciones">
+      <h2>Gestión de Productos</h2>
+
+      <div class="formulario">
+        <input type="text" id="nombre" placeholder="Nombre del producto">
+        <input type="text" id="categoria" placeholder="Categoría">
+        <input type="number" id="cantidad" placeholder="Cantidad">
+        <input type="number" id="precio" placeholder="Precio (MXN)">
+        <input type="text" id="proveedor" placeholder="Proveedor">
+        <button id="agregarBtn">Agregar Producto</button>
+        <button id="editarBtn" disabled>Guardar Cambios</button>
+      </div>
+
+      <div class="busqueda">
+        <input type="text" id="buscar" placeholder="Buscar por nombre o categoría...">
+      </div>
+    </section>
+
+    <section class="tabla">
+      <h2>Listado de Productos</h2>
+      <table id="tablaProductos">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Proveedor</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaBody"></tbody>
+      </table>
+      <div class="botonesDescarga">
+        <button id="descargarExcel">Descargar Excel</button>
+        <button id="descargarPDF">Descargar PDF</button>
+      </div>
+    </section>
+
+    <section class="historial">
+      <h2>Historial de Movimientos</h2>
+      <ul id="listaHistorial"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Taller ToPerformance | Sistema Interno de Gestión</p>
+  </footer>
+
+  <script type="module" src="inventario.js"></script>
+</body>
+</html>

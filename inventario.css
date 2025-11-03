@@ -1,0 +1,161 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8f8f8;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+header {
+  background: linear-gradient(to right, #8B0000, #400000);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo {
+  height: 60px;
+  border-radius: 50%;
+}
+
+header h1 {
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  margin: 0;
+}
+
+header button {
+  background: #d00000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+header button:hover {
+  background: #a00000;
+}
+
+main {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+}
+
+.acciones {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.acciones h2 {
+  color: #8B0000;
+}
+
+.formulario input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.formulario button {
+  margin-top: 8px;
+  width: 48%;
+  padding: 10px;
+  background: #8B0000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background: #a00000;
+}
+
+.busqueda input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.tabla {
+  grid-column: 1 / span 2;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background: #8B0000;
+  color: white;
+}
+
+table tr.stock-bajo {
+  background-color: #ffe6e6;
+}
+
+.botonesDescarga {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.botonesDescarga button {
+  background: #400000;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botonesDescarga button:hover {
+  background: #8B0000;
+}
+
+.historial {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.historial h2 {
+  color: #8B0000;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #400000;
+  color: white;
+  margin-top: 30px;
+}
