@@ -1,135 +1,411 @@
-/* ==== ESTILO GENERAL ==== */
-body {
-  font-family: "Poppins", sans-serif;
-  margin: 0;
-  background: #f5f5f5;
-  color: #222;
+/* ===========================
+   recibos.css — Estilo profesional y 100% responsivo
+   =========================== */
+
+:root {
+  --brand: #8B0000;
+  --accent: #2563eb;
+  --muted: #6b7280;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --card-bg: #ffffff;
+  --shadow: 0 6px 20px rgba(17, 24, 39, 0.08);
 }
 
-/* ==== ENCABEZADO ==== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
 header {
+  background: linear-gradient(90deg, var(--brand), #400000);
+  color: #fff;
+  padding: 14px 22px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: #212529;
+  gap: 14px;
+  box-shadow: var(--shadow);
+}
+
+header .logo {
+  height: 48px;
+  border-radius: 6px;
+}
+
+header h1 {
+  flex: 1;
+  font-size: 20px;
+  margin: 0;
+}
+
+header .header-actions button {
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  padding: 1rem 2rem;
-}
-
-.logo {
-  width: 60px;
-}
-
-.botones-header button {
-  margin-left: 10px;
-  background: #ffb703;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
+  transition: background 0.2s;
 }
 
-.botones-header button:hover {
-  background: #ffcb77;
+header .header-actions button:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* ==== FORMULARIO ==== */
+/* ===========================
+   LAYOUT
+   =========================== */
+
 main {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 1250px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-h2 {
-  text-align: center;
+.left-col {
+  flex: 1 1 680px;
 }
 
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.right-col {
+  flex: 1 1 420px;
 }
 
-button {
+/* ===========================
+   CARD GENERAL
+   =========================== */
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+h2, h3 {
+  margin: 6px 0 12px 0;
+  color: var(--brand);
+}
+
+/* ===========================
+   FORMULARIO DE RECIBO
+   =========================== */
+
+label {
   display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #374151;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
   width: 100%;
-  background: #219ebc;
-  color: white;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-top: 6px;
+  font-size: 14px;
+  background: #f9fafb;
+  transition: border 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* ===========================
+   LISTA DE PRODUCTOS
+   =========================== */
+
+.productos-lista {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 6px;
+  margin-top: 8px;
+  background: #fafafa;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand) #f3f4f6;
+}
+
+.productos-lista::-webkit-scrollbar {
+  width: 6px;
+}
+.productos-lista::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border-radius: 6px;
+}
+
+.producto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: #fff;
+  border: 1px solid #eef2ff;
+  transition: background 0.2s;
+}
+.producto-item:hover {
+  background: #f1f5f9;
+}
+
+.producto-item small {
+  color: var(--muted);
+  display: block;
+}
+
+.producto-item button {
+  background: var(--accent);
+  color: #fff;
   border: none;
-  padding: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+.producto-item button:hover {
+  background: #1e40af;
+}
+
+/* ===========================
+   PRODUCTOS SELECCIONADOS
+   =========================== */
+
+.productos-seleccionados {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  padding: 6px 10px;
+  border-radius: 999px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tag button {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* ===========================
+   BOTONES
+   =========================== */
+
+.controls-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+button.primary {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
   font-weight: 600;
+  transition: background 0.2s;
+}
+button.primary:hover {
+  background: #5d0000;
 }
 
-button:hover {
-  background: #023047;
+button.secondary {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-/* ==== RECIBO ==== */
-.recibo-container {
-  margin-top: 30px;
-  text-align: center;
+button.danger {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.oculto {
-  display: none;
-}
+/* ===========================
+   PREVIEW FACTURA
+   =========================== */
 
-#recibo {
+.preview-container {
   background: #fff;
   border-radius: 10px;
-  padding: 20px;
-  margin-top: 10px;
-  border: 2px solid #219ebc;
+  padding: 18px;
+  border: 1px solid #e6eefb;
+  box-shadow: var(--shadow);
+  min-height: 260px;
+}
+
+.preview-factura {
+  max-width: 380px;
+  margin: 0 auto;
+  font-family: Inter, sans-serif;
+  text-align: left;
+}
+
+.preview-factura .head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.preview-factura img {
+  height: 56px;
+}
+.preview-factura h3 {
+  margin: 0;
+  color: var(--brand);
+  font-size: 18px;
+}
+
+.preview-factura .meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.preview-factura table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 13px;
+}
+.preview-factura th {
+  background: #f3f4f6;
+  padding: 8px;
+  text-align: left;
+}
+.preview-factura td {
+  padding: 8px;
+  border-bottom: 1px solid #f2f4f7;
+}
+.totales {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+  font-weight: 700;
+}
+
+/* ===========================
+   HISTORIAL DE RECIBOS
+   =========================== */
+
+.acordeon .recibo-item {
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .recibo-header {
-  text-align: center;
-  border-bottom: 2px solid #219ebc;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-}
-
-.logo-mini {
-  width: 50px;
-}
-
-.recibo-footer {
-  border-top: 2px solid #219ebc;
-  padding-top: 10px;
-  margin-top: 15px;
-  font-style: italic;
-}
-
-.botones-recibo {
-  margin-top: 20px;
+  background: #f8fafc;
+  padding: 10px;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+.recibo-header:hover {
+  background: #f1f5f9;
+}
+.recibo-header strong {
+  font-size: 14px;
 }
 
-/* ==== RESPONSIVO ==== */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
+.recibo-body {
+  display: none;
+  padding: 12px;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+}
+.recibo-body.visible {
+  display: block;
+}
 
+/* ===========================
+   CONTROLES HISTORIAL
+   =========================== */
+
+.hist-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.hist-controls input {
+  flex: 1;
+  min-width: 220px;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+
+.footer {
+  margin-top: 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ===========================
+   RESPONSIVO
+   =========================== */
+
+@media (max-width: 900px) {
   main {
-    margin: 20px;
-    padding: 20px;
+    flex-direction: column;
   }
-
-  .botones-recibo button {
-    font-size: 0.9rem;
+  .right-col {
+    width: 100%;
+  }
+  .preview-factura {
+    max-width: 100%;
   }
 }
