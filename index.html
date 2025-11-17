@@ -101,7 +101,7 @@
       margin-top: 25px;
     }
 
-    .external-links a {
+    .external-links a, .external-links button {
       display: block;
       background: #ffffff;
       color: #8B0000;
@@ -112,11 +112,56 @@
       margin: 8px 0;
       border: 2px solid #8B0000;
       transition: all 0.3s ease;
+      width: 100%;
+      cursor: pointer;
     }
 
-    .external-links a:hover {
+    .external-links a:hover,
+    .external-links button:hover {
       background: #8B0000;
       color: #fff;
+    }
+
+    /* Modal QR */
+    #qrModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #qrContent {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 90%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    #qrContent img {
+      width: 260px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    #qrClose {
+      margin-top: 10px;
+      background: #d00000;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #qrClose:hover {
+      background: #a00000;
     }
   </style>
 </head>
@@ -125,14 +170,35 @@
   <div class="login-box">
     <img src="imagenes/logo1.png" alt="Logo Taller">
     <h2>Acceso al Sistema</h2>
+
     <input type="email" id="email" placeholder="Correo institucional">
     <input type="password" id="password" placeholder="Contraseña">
     <button id="loginBtn">Ingresar</button>
+
     <span class="link" onclick="resetPassword()">¿Olvidaste tu contraseña?</span>
 
     <div class="external-links">
+
       <a href="https://toperformance-qr.vercel.app/index.html" target="_blank">📱 Página QR's</a>
       <a href="https://toperformance.vercel.app/index.html" target="_blank">🌐 Página General</a>
+
+      <!-- NUEVOS BOTONES -->
+      <a href="https://toperformance.vercel.app/admin.html" target="_blank">🛠 Administrar Publicaciones</a>
+
+      <button onclick="openQR()">📸 Visualizar QR</button>
+    </div>
+  </div>
+
+  <!-- 📌 MODAL QR -->
+  <div id="qrModal">
+    <div id="qrContent">
+      <img src="imagenes/QR.png" alt="QR del sistema" id="qrImage">
+      <br>
+      <a id="qrDownload" download="QR-ToPerformance.png">
+        <button style="background:#008000; margin-bottom:10px;">⬇ Descargar QR</button>
+      </a>
+      <br>
+      <button id="qrClose" onclick="closeQR()">Cerrar</button>
     </div>
   </div>
 
@@ -142,7 +208,7 @@
       getAuth, 
       signInWithEmailAndPassword, 
       sendPasswordResetEmail, 
-      setPersistence, 
+      setPersistence,
       browserLocalPersistence 
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
@@ -162,7 +228,7 @@
 
     const loginBtn = document.getElementById("loginBtn");
 
-    // 🔐 Iniciar sesión
+    // LOGIN
     loginBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
@@ -180,35 +246,38 @@
         localStorage.setItem("userEmail", user.email);
         localStorage.setItem("userUid", user.uid);
 
-        // ✅ Redirige a inicio.html tras login exitoso
-        window.location.href = "inicio.html";
+        window.location.href = "inicio.html"; 
       } catch (error) {
-        if (error.code === "auth/invalid-credential") {
-          alert("Correo o contraseña incorrectos.");
-        } else if (error.code === "auth/too-many-requests") {
-          alert("Demasiados intentos fallidos. Intenta más tarde.");
-        } else {
-          alert("Error: " + error.message);
-        }
+        alert("Error: " + error.message);
       }
     });
 
-    // ✉️ Recuperar contraseña
+    // Recuperar contraseña
     window.resetPassword = async function() {
       const email = document.getElementById("email").value.trim();
-      if (!email) {
-        alert("Por favor ingresa tu correo para recuperar la contraseña.");
-        return;
-      }
+      if (!email) return alert("Ingresa tu correo para recuperar la contraseña.");
 
       try {
         await sendPasswordResetEmail(auth, email);
         alert("Se envió un correo de recuperación a " + email);
       } catch (error) {
-        alert("Error al enviar correo: " + error.message);
-        console.error(error);
+        alert("Error al enviar correo.");
       }
     };
+
+    // 📸 Abrir QR
+    window.openQR = function() {
+      const modal = document.getElementById("qrModal");
+      const qrImg = document.getElementById("qrImage");
+      const download = document.getElementById("qrDownload");
+      download.href = qrImg.src;
+      modal.style.display = "flex";
+    };
+
+    window.closeQR = function() {
+      document.getElementById("qrModal").style.display = "none";
+    };
   </script>
+
 </body>
 </html>
